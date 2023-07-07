@@ -5,17 +5,16 @@ import com.example.OneToOneMapping.repository.IAddressRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AddressService {
     @Autowired
     IAddressRepo iAddressRepo;
 
-    public void getAddress() {
-        iAddressRepo.findAll();
-    }
 
-    public void getAddressById(Long id) {
-        iAddressRepo.findByAddressId(id);
+    public Optional<Address> getAddressById(Long id) {
+        return iAddressRepo.findById(id);
     }
 
     public void addAddress(Address address) {
@@ -29,4 +28,7 @@ public class AddressService {
         return "Address Deleted Successfully";
     }
 
+    public Iterable<Address> getAddress() {
+        return iAddressRepo.findAll();
+    }
 }

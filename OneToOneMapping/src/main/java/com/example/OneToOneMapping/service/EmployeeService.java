@@ -5,17 +5,19 @@ import com.example.OneToOneMapping.repository.IEmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeService {
     @Autowired
     IEmployeeRepo iEmployeeRepo;
 
-    public void getEmployees() {
-        iEmployeeRepo.findAll();
+    public Iterable<Employee> getEmployees() {
+        return iEmployeeRepo.findAll();
     }
 
-    public void getEmployeeById(Long id) {
-        iEmployeeRepo.findByEmployeeId(id);
+    public Optional<Employee> getEmployeeById(Long id) {
+        return iEmployeeRepo.findById(id);
     }
 
     public void addEmployee(Employee employee) {

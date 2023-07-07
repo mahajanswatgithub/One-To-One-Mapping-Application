@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IEmployeeRepo extends CrudRepository<Employee,Long> {
-
-    void findByEmployeeId(Long id);
     @Transactional
     @Modifying
     @Query(value = "update Employee set Last_Name = :lastName where Employee_Id = :id",nativeQuery = true)

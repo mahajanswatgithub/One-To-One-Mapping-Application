@@ -6,6 +6,8 @@ import com.example.OneToOneMapping.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 public class EmployeeController {
     @Autowired
@@ -19,16 +21,16 @@ public class EmployeeController {
     }
 //     get all employees
     @GetMapping("employees")
-    public void getEmployees()
+    public Iterable<Employee> getEmployees()
     {
-        employeeService.getEmployees();
+        return employeeService.getEmployees();
     }
 
 //     get an employee by id
     @GetMapping("employee/id/{id}")
-    public void getEmployeeById(@PathVariable Long id)
+    public Optional<Employee> getEmployeeById(@PathVariable Long id)
     {
-        employeeService.getEmployeeById(id);
+        return employeeService.getEmployeeById(id);
     }
 
 

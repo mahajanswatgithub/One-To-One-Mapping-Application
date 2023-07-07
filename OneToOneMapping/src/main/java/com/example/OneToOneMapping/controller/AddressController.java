@@ -6,6 +6,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 public class AddressController {
     @Autowired
@@ -20,16 +23,16 @@ public class AddressController {
 
 //    get all addresses
     @GetMapping("address")
-    public void getAddress()
+    public Iterable<Address> getAddress()
     {
-        addressService.getAddress();
+        return addressService.getAddress();
     }
 
 //     get an address by id
     @GetMapping("address/id/{id}")
-    public void getAddressById(@PathVariable Long id)
+    public Optional<Address> getAddressById(@PathVariable Long id)
     {
-        addressService.getAddressById(id);
+        return addressService.getAddressById(id);
     }
 
 
